@@ -37,7 +37,6 @@ export const getProductsByCategory = async (category: string): Promise<IProduct[
   }
 };
 
-// Get product by name (search)
 export const getProductsByName = async (name: string): Promise<IProduct[]> => {
   try {
     const res = await core.get(`/products?product=${encodeURIComponent(name)}`);
@@ -48,7 +47,6 @@ export const getProductsByName = async (name: string): Promise<IProduct[]> => {
   }
 };
 
-// Get product detail by ID
 export const getProductDetail = async (id: number): Promise<IProduct | null> => {
   try {
     const res = await core.get(`/products/detail/${id}`);
@@ -59,7 +57,6 @@ export const getProductDetail = async (id: number): Promise<IProduct | null> => 
   }
 };
 
-// Get products by type ID
 export const getProductsByType = async (typeId: number): Promise<IProduct[]> => {
   try {
     const res = await core.get(`/products/type/${typeId}`);
@@ -70,7 +67,6 @@ export const getProductsByType = async (typeId: number): Promise<IProduct[]> => 
   }
 };
 
-// Get product types
 export interface IProductType {
   id: number;
   name: string;

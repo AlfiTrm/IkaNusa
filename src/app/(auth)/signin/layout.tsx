@@ -1,4 +1,4 @@
-import Ornament from "../login/components/Ornament";
+import Ornament from "./components/Ornament";
 import SignInForm from "./components/SignInForm";
 
 export default function Layout({

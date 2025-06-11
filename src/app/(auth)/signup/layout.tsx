@@ -1,3 +1,5 @@
+"use client"
+
 import Ornament from "./components/Ornament";
 import SignUpForm from "./components/SignUpForm";
 

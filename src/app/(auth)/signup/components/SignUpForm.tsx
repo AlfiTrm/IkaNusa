@@ -5,8 +5,12 @@ import Image from "next/image";
 import logo from "@/assets/img/logo/ikanusalogo.webp";
 import { LockKeyhole, Mail, Phone, User2 } from "lucide-react";
 import { registerUser } from "@/api/services/users/register";
+import { useRouter } from "next/navigation";
+import { decodeToken } from "@/utils/token";
+import { jwtDecode } from "jwt-decode";
 
 export default function SignUp() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -42,10 +46,20 @@ export default function SignUp() {
       const data = await registerUser(payload);
 
       console.log("Register success:", data);
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
 
+      if (data.data.token) {
+        localStorage.setItem("token", data.data.token);
+        console.log(data.data.token)
+        const decoded = decodeToken();
+        if (decoded) {
+          localStorage.setItem("user_id", decoded.UserID);
+          localStorage.setItem("exp", decoded.exp);
+          console.log(decoded.UserID)
+          console.log("Isi token:", jwtDecode(data.data.token));
+        }
+      }
+      
+      router.push("/address");
       alert("Berhasil mendaftar!");
     } catch (err) {
       console.error("Register failed:", err);
@@ -121,7 +135,7 @@ export default function SignUp() {
               placeholder=""
               value={formData.whatsapp}
               onChange={handleChange}
-              className="w-full py-3 px-24  border rounded-full font-semibold text-sm"
+              className="w-full py-3 px-24 border rounded-full font-semibold text-sm"
               required
             />
             <div className="flex gap-2 items-center absolute left-8 text-sm">
@@ -176,7 +190,7 @@ export default function SignUp() {
 
         <p className="text-center font-semibold mt-4 text-sm">
           Sudah punya akun?
-          <a href="/login" className="ml-2 text-blu-350">
+          <a href="/signin" className="ml-2 text-blu-350">
             Masuk Sekarang
           </a>
         </p>
