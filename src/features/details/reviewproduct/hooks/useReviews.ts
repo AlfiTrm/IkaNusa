@@ -37,8 +37,9 @@ export const useReviews = (productId: string | number) => {
         message: "Ulasan berhasil ditambahkan",
         data: newReview,
       };
-    } catch (err: any) {
-      const message = err?.response?.data?.message || err.message || "Gagal mengirim ulasan";
+    } catch (err: unknown) {
+      console.log("Error: ", err)
+      const message = "Gagal mengirim ulasan";
       setError(message);
       return {
         success: false,

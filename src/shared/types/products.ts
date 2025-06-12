@@ -7,4 +7,5 @@ export interface IProduct {
     sold: string;
     store_name: string;
     category: "air tawar" | "air laut" | "lain-lain";
+    
 }

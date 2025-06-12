@@ -13,7 +13,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/home/details/${product.product_id}`);
+    router.push(`/home/product-details/${product.product_id}`);
   };
 
   return (

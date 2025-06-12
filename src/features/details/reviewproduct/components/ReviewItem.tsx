@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { MessageCircle, Clock } from "lucide-react";
 import { Review } from "../types/review";
 
 interface ReviewItemProps {
