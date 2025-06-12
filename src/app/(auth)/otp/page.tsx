@@ -1,4 +1,3 @@
-// pages/otp/page.tsx atau app/otp/page.tsx
 
 import OTPPage from "./components/OtpForm";
 

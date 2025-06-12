@@ -34,19 +34,16 @@ const Step1: React.FC<Step1Props> = ({
   cities,
   districts,
 }) => {
-  // Format data provinsi menjadi array of SelectOption
   const provinceOptions: SelectOption[] = provinces.map((province) => ({
     value: province.province_id.toString(),
     label: province.province_name,
   }));
 
-  // Format data kota menjadi array of SelectOption
   const cityOptions: SelectOption[] = cities.map((city) => ({
     value: city.city_id.toString(),
     label: city.city_name,
   }));
 
-  // Format data kecamatan menjadi array of SelectOption
   const districtOptions: SelectOption[] = districts.map((district) => ({
     value: district.district_id.toString(),
     label: district.district_name,

@@ -10,7 +10,7 @@ export const promoProducts = [
         discount: "20%",
         rating: 4.8,
         sold: "5rb+",
-        endDate: "2025-06-10T23:59:59"
+        endDate: "2025-20-10T23:59:59"
 
     },
     {
@@ -21,7 +21,7 @@ export const promoProducts = [
         discount: "20%",
         rating: 4.8,
         sold: "5rb+",
-        endDate: "2025-06-10T23:59:59"
+        endDate: "2025-20-10T23:59:59"
 
     },
     {
@@ -32,7 +32,7 @@ export const promoProducts = [
         discount: "20%",
         rating: 4.8,
         sold: "5rb+",
-        endDate: "2025-06-10T23:59:59"
+        endDate: "2025-20-10T23:59:59"
 
     },
 ];

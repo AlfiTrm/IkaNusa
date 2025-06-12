@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getUserIdFromToken, resendOTP, verifyOTP } from '@/api/services/users/otp';
 
-// TypeScript interfaces
 interface OTPInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,7 +12,6 @@ interface OTPInputProps {
   disabled: boolean;
 }
 
-// OTP Input Component
 const OTPInput: React.FC<OTPInputProps> = ({ 
   value, 
   onChange, 
@@ -33,7 +31,6 @@ const OTPInput: React.FC<OTPInputProps> = ({
   />
 );
 
-// Main OTP Page Component
 const OTPPage: React.FC = () => {
   const router = useRouter();
   const [otp, setOtp] = useState<string[]>(['', '', '', '', '', '']);
@@ -42,12 +39,10 @@ const OTPPage: React.FC = () => {
   const [canResend, setCanResend] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Initialize refs array
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, 6);
   }, []);
 
-  // Countdown timer
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
@@ -58,13 +53,12 @@ const OTPPage: React.FC = () => {
   }, [countdown]);
 
   const handleInputChange = (index: number, value: string): void => {
-    if (!/^\d*$/.test(value)) return; // Only allow numbers
+    if (!/^\d*$/.test(value)) return; 
 
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Auto focus next input
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -98,11 +92,9 @@ const OTPPage: React.FC = () => {
         otp_code: otpCode
       });
       
-      // Success alert sudah ditangani di dalam verifyOTP function
       router.push('/home');
       
     } catch (error) {
-      // Error alert sudah ditangani di dalam verifyOTP function
       console.error('OTP verification failed:', error);
     } finally {
       setIsLoading(false);
@@ -126,17 +118,13 @@ const OTPPage: React.FC = () => {
         user_id: userId
       });
       
-      // Success alert sudah ditangani di dalam resendOTP function
-      // Reset countdown
       setCountdown(60);
       setCanResend(false);
       setOtp(['', '', '', '', '', '']);
       
-      // Focus first input
       inputRefs.current[0]?.focus();
       
     } catch (error) {
-      // Error alert sudah ditangani di dalam resendOTP function
       console.error('Failed to resend OTP:', error);
     } finally {
       setIsLoading(false);
@@ -144,7 +132,6 @@ const OTPPage: React.FC = () => {
   };
 
   const handleLogout = (): void => {
-    // Clear any stored tokens/data
     if (typeof window !== 'undefined') {
       localStorage.removeItem('token');
     }
@@ -155,15 +142,12 @@ const OTPPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 relative overflow-hidden">
-      {/* Background Decorations */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full opacity-20 -translate-x-32 -translate-y-32"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full opacity-15 translate-x-48 translate-y-48"></div>
       <div className="absolute top-1/2 left-0 w-48 h-48 bg-blue-100 rounded-full opacity-30 -translate-x-24"></div>
       
-      {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-md">
-          {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-xl mb-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,7 +157,6 @@ const OTPPage: React.FC = () => {
             <h1 className="text-xl font-semibold text-gray-800">IkaNusa</h1>
           </div>
 
-          {/* Form Card */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -184,8 +167,7 @@ const OTPPage: React.FC = () => {
               </p>
             </div>
 
-            {/* OTP Input Fields */}
-            <div className="flex justify-center space-x-3 mb-8">
+            <form className="flex justify-center space-x-3 mb-8">
               {otp.map((digit: string, index: number) => (
                 <OTPInput
                   key={index}
@@ -202,9 +184,8 @@ const OTPPage: React.FC = () => {
                   disabled={isLoading}
                 />
               ))}
-            </div>
+            </form>
 
-            {/* Submit Button */}
             <button
               onClick={handleSubmit}
               disabled={!isOtpComplete || isLoading}
@@ -220,7 +201,6 @@ const OTPPage: React.FC = () => {
               )}
             </button>
 
-            {/* Resend OTP */}
             <div className="text-center mb-6">
               {canResend ? (
                 <button
@@ -237,7 +217,6 @@ const OTPPage: React.FC = () => {
               )}
             </div>
 
-            {/* Logout Link */}
             <div className="text-center">
               <button
                 onClick={handleLogout}
@@ -248,7 +227,6 @@ const OTPPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Additional Info */}
           <div className="text-center mt-6">
             <p className="text-xs text-gray-400">
               Tidak menerima kode? Periksa folder spam atau hubungi support

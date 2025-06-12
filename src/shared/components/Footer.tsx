@@ -10,7 +10,6 @@ const Footer = () => {
     <footer className="w-full h-fit pb-10 mt-20 bg-white border-t border-gray-200 text-sm">
       <div className="mycontainer flex flex-col md:flex-row flex-wrap justify-between gap-10 px-6 pt-10">
         
-        {/* Tentang Kami */}
         <section className="min-w-[200px]">
           <h1 className="font-medium mb-2">Tentang Kami</h1>
           <ul className="flex flex-col gap-1">

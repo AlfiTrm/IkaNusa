@@ -1,5 +1,5 @@
 import core from "@/api/core/core";
-import { decodeToken } from "@/utils/token"; // Adjust path as needed
+import { decodeToken } from "@/utils/token"; 
 
 export interface OTPVerificationRequest {
     user_id: string;

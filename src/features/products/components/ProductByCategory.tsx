@@ -2,13 +2,19 @@ import { categories } from "@/features/hero/data/KategoriPilihan";
 import LoadingProduct from "@/shared/components/ui/LoadingProduct";
 import ProductCard from "@/shared/components/ui/ProductCard";
 import { useProductByCategory } from "@/shared/hooks/useProductByCategory";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ProductByCategory = () => {
   const [selectedCategory, setSelectedCategory] = useState("rekomendasi");
   const { products, loading, error } = useProductByCategory(selectedCategory);
+  const [lastProductCount, setLastProductCount] = useState(6);
 
-  if (loading) return <LoadingProduct />;
+  useEffect(() => {
+    if (products.length > 0) {
+      setLastProductCount(products.length);
+    }
+  }, [products]);
+
   if (error) return <p>{error}</p>;
 
   return (
@@ -30,9 +36,13 @@ export const ProductByCategory = () => {
       </div>
 
       <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2">
-        {products.map((product) => (
-          <ProductCard key={product.product_id} product={product} />
-        ))}
+        {loading ? (
+          <LoadingProduct count={lastProductCount} />
+        ) : (
+          products.map((product) => (
+            <ProductCard key={product.product_id} product={product} />
+          ))
+        )}
       </div>
     </section>
   );

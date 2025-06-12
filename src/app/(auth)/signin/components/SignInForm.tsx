@@ -39,13 +39,11 @@ export default function Login() {
       if (data.data.token) {
         localStorage.setItem("token", data.data.token);
         
-        // Trigger storage event untuk update navbar di tab lain
         window.dispatchEvent(new Event('storage'));
         
         alert("Berhasil login!");
         
-        // Redirect ke dashboard atau homepage
-        router.push("/home"); // atau "/" untuk homepage
+        router.push("/home");
       } else {
         alert("Login berhasil tapi tidak mendapat token!");
       }

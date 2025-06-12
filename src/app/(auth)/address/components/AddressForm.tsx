@@ -33,7 +33,6 @@ const AddressForm: React.FC = () => {
   const [districts, setDistricts] = useState<District[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Load provinces on component mount
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
@@ -49,7 +48,6 @@ const AddressForm: React.FC = () => {
     fetchProvinces();
   }, []);
 
-  // Load cities when province changes
   useEffect(() => {
     const fetchCities = async () => {
       if (addressData.province) {
@@ -69,7 +67,6 @@ const AddressForm: React.FC = () => {
     fetchCities();
   }, [addressData.province]);
 
-  // Load districts when city changes
   useEffect(() => {
     const fetchDistricts = async () => {
       if (addressData.city) {
@@ -97,7 +94,6 @@ const AddressForm: React.FC = () => {
       city: "",
       district: 0,
     });
-    // Reset cities and districts when province changes
     setCities([]);
     setDistricts([]);
   };
@@ -109,7 +105,6 @@ const AddressForm: React.FC = () => {
       city: value,
       district: 0,
     });
-    // Reset districts when city changes
     setDistricts([]);
   };
 
@@ -134,7 +129,6 @@ const AddressForm: React.FC = () => {
       setIsSubmitting(true);
       
       try {
-        // Get user_id from decoded token
         const decoded = decodeToken();
         if (!decoded || !decoded.UserID) {
           alert("Token tidak valid. Silakan login ulang.");
@@ -142,7 +136,6 @@ const AddressForm: React.FC = () => {
           return;
         }
 
-        // Prepare payload for API
         const payload = {
           user_id: decoded.UserID,
           district_id: addressData.district,
@@ -153,13 +146,11 @@ const AddressForm: React.FC = () => {
 
         console.log("Submitting address data:", payload);
 
-        // Submit to API
         const response = postAddress(payload)
         
         console.log("Address submission successful:", response);
         alert("Alamat berhasil disimpan!");
         
-        // Redirect to OTP page
         router.push("/otp");
         
       } catch (error) {
