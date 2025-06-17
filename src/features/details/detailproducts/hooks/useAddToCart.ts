@@ -7,8 +7,6 @@ export const useAddToCart = () => {
   const handleAdd = async (product_id: number, quantity: number = 1) => {
     try {
       setLoading(true);
-      console.log(quantity)
-      console.log(product_id)
       const result = await addToCart({ product_id, quantity });
       return result;
     } catch (err) {

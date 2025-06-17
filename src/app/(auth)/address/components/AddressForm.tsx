@@ -176,7 +176,7 @@ const AddressForm: React.FC = () => {
   const isStep2Valid = !!(addressData.label && addressData.address_detail);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="pb-20">
       <div className="relative z-10 mx-auto px-4 py-8 max-w-4xl">
         {currentStep === 1 ? (
           <Step1

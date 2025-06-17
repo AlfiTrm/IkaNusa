@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  
+
   const { user, isAuthenticated, isLoading, signOut } = useAuth();
 
   const handleSearchClick = () => {
@@ -31,19 +31,26 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   };
 
   return (
-    <nav className={`fixed w-full bg-white border-b border-netral-100 z-50 ${className}`}>
+    <nav
+      className={`fixed w-full bg-white border-b border-netral-100 z-50 ${className}`}
+    >
       <main className="h-16 w-full flex items-center justify-between mycontainer text-sm font-normal relative">
-        <Link href={"/home"} className="flex items-center w-44 mr-2 cursor-pointer">
+        <Link
+          href={"/home"}
+          className="flex items-center w-44 mr-2 cursor-pointer"
+        >
           <Image src={ikanusalogo} alt="logo" className="w-44 h-auto" />
         </Link>
 
         <section className="hidden lg:flex font-semibold items-center gap-6">
           <h2 className="text-lg cursor-pointer">Kategori</h2>
-          
+
           <SearchBar className="2xl:w-180 w-72" />
 
           <div className="flex gap-5">
-            <ShoppingCart className="cursor-pointer hover:text-blu-250 transition-colors" />
+            <a href="/cart">
+              <ShoppingCart className="cursor-pointer hover:text-blu-250 transition-colors" />
+            </a>
             <Bell className="cursor-pointer hover:text-blu-250 transition-colors" />
             <div className="flex items-center gap-2 cursor-pointer hover:text-blu-250 transition-colors">
               <StoreIcon />
@@ -68,8 +75,8 @@ const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
         </section>
 
         <div className="lg:hidden flex items-center gap-3">
-          <button 
-            className="cursor-pointer hover:text-blu-250 transition-colors" 
+          <button
+            className="cursor-pointer hover:text-blu-250 transition-colors"
             onClick={handleSearchClick}
           >
             <Search size={22} />

@@ -40,10 +40,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       <SearchBar onSubmit={onClose} />
 
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-3 py-2 hover:bg-gray-50 rounded-lg px-2 cursor-pointer transition-colors">
+        <a href="/cart" className="flex items-center gap-3 py-2 hover:bg-gray-50 rounded-lg px-2 cursor-pointer transition-colors">
           <ShoppingCart size={20} />
           <span>Keranjang</span>
-        </div>
+        </a>
         <div className="flex items-center gap-3 py-2 hover:bg-gray-50 rounded-lg px-2 cursor-pointer transition-colors">
           <Bell size={20} />
           <span>Notifikasi</span>

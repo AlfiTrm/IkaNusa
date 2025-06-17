@@ -5,7 +5,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="h-screen overflow-y-hidden">
+    <section className="h-screen">
       {children}
     </section>
   );

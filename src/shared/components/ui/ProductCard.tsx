@@ -13,7 +13,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/home/product-details/${product.product_id}`);
+    router.push(`/product-details/${product.product_id}`);
   };
 
   return (
@@ -21,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       onClick={handleClick}
       className="w-full max-w-[160px] sm:max-w-48 hover:cursor-pointer"
     >
-      <div className="bg-white shadow rounded-lg overflow-hidden hover:shadow-md hover:scale-105 transition duration-200 hover:bg-neutral-50">
+      <div className="bg-white shadow rounded-lg overflow-hidden hover:shadow-md hover:scale-101 hover:bg-neutral-50 transition duration-200">
         <div className="relative w-full h-32 sm:h-40">
           <Image
             src={product.image_url}
@@ -33,13 +33,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className="p-2">
-          <p className="text-xs sm:text-sm font-medium line-clamp-2">{product.product_name}</p>
+          <p className="text-xs sm:text-sm font-medium">{product.product_name}</p>
           <p className="text-sm font-bold text-gray-800 mt-1">
             Rp{product.price.toLocaleString("id-ID")}
           </p>
 
           <div className="flex items-center gap-1 text-[10px] sm:text-xs text-gray-600 mt-1">
-            <Star className="w-3 h-3 text-yellow-500" fill="currentColor" />
+            <Star className="w-3 h-3 text-yelo-150" fill="currentColor" />
             <span>4.5</span>
             <span>• 5rb+ terjual</span>
           </div>

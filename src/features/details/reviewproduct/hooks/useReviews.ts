@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Review, ReviewFormData, ReviewResponse } from "../types/review";
 import { getReviewsByProductId, postReviewForProduct } from "@/api/services/review/review";
 
@@ -9,7 +9,7 @@ export const useReviews = (productId: string | number) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -22,7 +22,7 @@ export const useReviews = (productId: string | number) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [productId]);
 
   const postReview = async (reviewData: ReviewFormData): Promise<ReviewResponse> => {
     try {
@@ -52,7 +52,7 @@ export const useReviews = (productId: string | number) => {
 
   useEffect(() => {
     fetchReviews();
-  }, [productId]);
+  }, [fetchReviews]);
 
   return {
     reviews,

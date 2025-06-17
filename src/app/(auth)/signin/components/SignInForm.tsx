@@ -3,8 +3,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import logo from "@/assets/img/logo/ikanusalogo.webp";
-import { Mail, LockKeyhole } from "lucide-react";
+import { Mail } from "lucide-react";
 import { loginUser } from "@/api/services/users/login";
+import PasswordInput from "@/shared/components/ui/PasswordInput";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -92,27 +93,15 @@ export default function Login() {
           </div>
         </label>
         
-        <label
-          htmlFor="password"
-          className="flex flex-col gap-2 font-semibold text-base"
-        >
-          Password
-          <div className="relative">
-            <input
-              type="password"
-              name="password"
-              placeholder="*********"
-              value={formData.password}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="w-full py-3 px-16 mb-2 border rounded-full font-semibold text-sm disabled:bg-gray-100 disabled:cursor-not-allowed"
-              required
-            />
-            <div className="absolute top-2 left-8">
-              <LockKeyhole />
-            </div>
-          </div>
-        </label>
+        <PasswordInput
+          name="password"
+          placeholder="*********"
+          value={formData.password}
+          onChange={handleChange}
+          disabled={isLoading}
+          required
+          label="Password"
+        />
         
         <div className="flex items-center justify-between mb-4 text-sm">
           <label className="flex items-center gap-2">

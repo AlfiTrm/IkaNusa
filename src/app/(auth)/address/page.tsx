@@ -1,5 +1,5 @@
-import React from 'react';
-import AddressForm from './components/AddressForm';
+import React from "react";
+import AddressForm from "./components/AddressForm";
 
 const Home: React.FC = () => {
   return (

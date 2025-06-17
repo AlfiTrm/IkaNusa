@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/img/logo/ikanusalogo.webp";
-import { LockKeyhole, Mail, Phone, User2 } from "lucide-react";
+import { Mail, Phone, User2 } from "lucide-react";
 import { registerUser } from "@/api/services/users/register";
 import { useRouter } from "next/navigation";
 import { decodeToken } from "@/utils/token";
 import { jwtDecode } from "jwt-decode";
+import PasswordInput from "@/shared/components/ui/PasswordInput";
 
 export default function SignUp() {
   const router = useRouter();
@@ -49,16 +50,16 @@ export default function SignUp() {
 
       if (data.data.token) {
         localStorage.setItem("token", data.data.token);
-        console.log(data.data.token)
+        console.log(data.data.token);
         const decoded = decodeToken();
         if (decoded) {
           localStorage.setItem("user_id", decoded.UserID);
           localStorage.setItem("exp", decoded.exp);
-          console.log(decoded.UserID)
+          console.log(decoded.UserID);
           console.log("Isi token:", jwtDecode(data.data.token));
         }
       }
-      
+
       router.push("/address");
       alert("Berhasil mendaftar!");
     } catch (err) {
@@ -82,7 +83,7 @@ export default function SignUp() {
         </h2>
 
         <label
-          htmlFor="Nama Lengkap"
+          htmlFor="fullName"
           className="flex flex-col gap-2 font-semibold text-base"
         >
           Nama Lengkap
@@ -103,7 +104,7 @@ export default function SignUp() {
         </label>
 
         <label
-          htmlFor="Nama Lengkap"
+          htmlFor="email"
           className="flex flex-col gap-2 font-semibold text-base"
         >
           Email
@@ -124,7 +125,7 @@ export default function SignUp() {
         </label>
 
         <label
-          htmlFor="Nomor WhatsApp"
+          htmlFor="whatsapp"
           className="flex flex-col gap-2 font-semibold text-base"
         >
           Nomor WhatsApp
@@ -145,26 +146,17 @@ export default function SignUp() {
           </div>
         </label>
 
-        <label
-          htmlFor="Nama Lengkap"
-          className="flex flex-col gap-2 font-semibold text-base"
-        >
-          Password
-          <div className="relative">
-            <input
-              type="password"
-              name="password"
-              placeholder="*********"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full py-3 px-16 mb-4 border rounded-full font-semibold text-sm"
-              required
-            />
-            <div className="absolute top-2 left-8">
-              <LockKeyhole />
-            </div>
-          </div>
-        </label>
+        <PasswordInput
+          name="password"
+          placeholder="*********"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          label="Password"
+          className="mb-2"
+          showValidation={true}
+          minLength={8}
+        />
 
         <div className="flex items-center gap-2 mb-4 text-sm">
           <input
@@ -176,7 +168,7 @@ export default function SignUp() {
           />
           <p>
             By continuing, you agree to
-            <span className="font-medium">Tutormy.id Term</span> and{" "}
+            <span className="font-medium"> Tutormy.id Term</span> and{" "}
             <span className="font-medium">Use and Privacy Policy</span>.
           </p>
         </div>
