@@ -15,7 +15,7 @@ const PurchasePanel = ({ product }: ProductDetailClientProps) => {
 
   const addToCart = (productId: number, qty: number | undefined) => {
     handleAdd(productId, qty);
-    toast.success("Produk berhasil ditambahkan ke keranjang!"); // Use toast for success message
+    toast.success("Produk berhasil ditambahkan ke keranjang!");
   };
 
   return (
