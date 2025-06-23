@@ -1,75 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/img/logo/ikanusalogo.webp";
 import { Mail, Phone, User2 } from "lucide-react";
-import { registerUser } from "@/api/services/users/register";
-import { useRouter } from "next/navigation";
-import { decodeToken } from "@/utils/token";
-import { jwtDecode } from "jwt-decode";
 import PasswordInput from "@/shared/components/ui/PasswordInput";
+import { useSignUp } from "../hooks/useSignup";
 
 export default function SignUp() {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    whatsapp: "",
-    password: "",
-    agree: false,
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.agree) {
-      alert("Kamu harus menyetujui syarat & ketentuan dulu.");
-      return;
-    }
-
-    try {
-      const payload = {
-        username: formData.fullName,
-        email: formData.email,
-        phone_number: formData.whatsapp,
-        password: formData.password,
-      };
-
-      const data = await registerUser(payload);
-
-      console.log("Register success:", data);
-
-      if (data.data.token) {
-        localStorage.setItem("token", data.data.token);
-        console.log(data.data.token);
-        const decoded = decodeToken();
-        if (decoded) {
-          localStorage.setItem("user_id", decoded.UserID);
-          localStorage.setItem("exp", decoded.exp);
-          console.log(decoded.UserID);
-          console.log("Isi token:", jwtDecode(data.data.token));
-        }
-      }
-
-      router.push("/address");
-      alert("Berhasil mendaftar!");
-    } catch (err) {
-      console.error("Register failed:", err);
-      alert("Gagal mendaftar. Cek kembali data kamu.");
-    }
-  };
+  const { formData, handleChange, handleSubmit } = useSignUp();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <main className="min-h-screen flex items-center justify-center bg-white px-4">
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 z-50 rounded-xl shadow-md w-full max-w-10/12"
@@ -187,6 +128,6 @@ export default function SignUp() {
           </a>
         </p>
       </form>
-    </div>
+    </main>
   );
 }

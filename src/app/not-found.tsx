@@ -1,4 +1,3 @@
-// app/not-found.tsx
 import Link from "next/link";
 import Image from "next/image";
 import notpon from "@/assets/img/not-found/notpon.webp";

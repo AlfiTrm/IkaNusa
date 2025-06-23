@@ -8,13 +8,13 @@ import seafoodPremium from "../../../../assets/img/hero/categories/SeafoodPremiu
 
 
 export const categoriesType = [
-  { title: "Ikan Segar", image: ikanSegar },
-  { title: "Seafood Premium", image: seafoodPremium },
-  { title: "Frozen Seafood", image: frozenSeafood },
-  { title: "Olahan Ikan", image: olahanIkan },
-  { title: "Ikan Asap", image: ikanAsap },
-  { title: "Ikan Kering", image: ikanKering },
-  { title: "Bundle Seafood", image: bundleSeafood },
+  { id: 1, title: "Ikan Segar", image: ikanSegar },
+  { id: 2, title: "Seafood Premium", image: seafoodPremium },
+  { id: 3, title: "Frozen Seafood", image: frozenSeafood },
+  { id: 4, title: "Olahan Ikan", image: olahanIkan },
+  { id: 5, title: "Ikan Asap", image: ikanAsap },
+  { id: 6, title: "Ikan Kering", image: ikanKering },
+  { id: 7, title: "Bundle Seafood", image: bundleSeafood },
 ];
 
 export const categories = [

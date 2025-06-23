@@ -12,7 +12,6 @@ export async function registerUser(payload: RegisterPayload) {
   return res.data;
 }
 
-
 interface AddressPayload {
   user_id: string;
   district_id: number;

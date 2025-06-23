@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 import Header from "./ui/Header";
 import ProgressSteps from "./ui/ProgressSteps";
 import { City, District, Province } from "@/api/services/users/addres";
-import { SelectOption } from "../types/SelectOption";
+import { useStep1 } from "../hooks/useStep1";
 
 interface Step1Props {
   addressData: AddressData;
@@ -34,20 +34,11 @@ const Step1: React.FC<Step1Props> = ({
   cities,
   districts,
 }) => {
-  const provinceOptions: SelectOption[] = provinces.map((province) => ({
-    value: province.province_id.toString(),
-    label: province.province_name,
-  }));
-
-  const cityOptions: SelectOption[] = cities.map((city) => ({
-    value: city.city_id.toString(),
-    label: city.city_name,
-  }));
-
-  const districtOptions: SelectOption[] = districts.map((district) => ({
-    value: district.district_id.toString(),
-    label: district.district_name,
-  }));
+  const { provinceOptions, cityOptions, districtOptions } = useStep1(
+    provinces,
+    cities,
+    districts
+  );
 
   return (
     <div className="bg-white rounded-2xl shadow-md shadow-netral-100 p-6 mb-6 md:translate-y-20">
@@ -103,7 +94,7 @@ const Step1: React.FC<Step1Props> = ({
         disabled={!isStep1Valid}
         className={`w-full py-3 px-4 rounded-xl font-semibold text-white transition-all duration-300 ${
           isStep1Valid
-            ? "bg-blue-600 hover:bg-blue-700 hover:shadow-lg transform hover:scale-[1.02]"
+            ? "bg-blu-350 hover:bg-blu-400 hover:shadow-lg transform "
             : "bg-gray-300 cursor-not-allowed"
         }`}
       >

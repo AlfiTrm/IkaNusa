@@ -18,7 +18,7 @@ export default function SuccessCo({
   onNavigateHome,
   orderTotal,
 }: CheckoutSuccessPopupProps) {
-  console.log(orderTotal)
+  console.log(orderTotal);
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {

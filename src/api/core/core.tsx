@@ -14,10 +14,10 @@ core.interceptors.response.use(
       error.response?.data?.message?.toLowerCase().includes("token expired")
     ) {
       localStorage.removeItem("token");
-      window.location.href = "/signin"; // paksa logout
+      window.location.href = "/signin";
     }
 
-    return Promise.reject(error); // teruskan error-nya ke caller
+    return Promise.reject(error);
   }
 );
 
